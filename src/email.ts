@@ -16,7 +16,7 @@ export async function email(message: any, env: any, ctx?: any): Promise<void> {
     const email = parseRawEmail(rawEmail);
 
     // Send discord message
-    const intro = `Email from ${from} to ${to} with subject "${subject}":\n\n`;
+    const intro = `> **${from}** to **${to}**\n**"${subject}"**:\n\n`;
     const [body = '(empty body)', ...rest] = splitEllipsis(email.text!, DISC_MAX_LEN, DISC_MAX_LEN - intro.length);
     const discordMessage = [`${intro}${body}`, ...rest];
     for (const part of discordMessage) {
